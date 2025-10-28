@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./src/output.css" rel="stylesheet">
+
     <title>Show Gallery</title>
 </head>
-<body>
-    
+
+<body class="flex flex-col gap-4 py-8 bg-orange-300 h-100 w-full">
+    <div class="flex flex-col gap-4 p-4 justify-center items-center ">
+        <h1 title="Click on me to open galley"
+            class="flex text-center w-fit font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+        border-2 border-black hover:bg-black hover:text-orange-300 cursor-pointer transition-all duration-500 rounded-2xl w-fit p-4">
+            Picture Gallery</h1>
+        <p>Hier gibt es schöne Städte zu sehen!</p>
+    </div>
+
+    <div id="gallery_container" class="flex  rounded-2xl">
+        <img class="" src="./src/img/adrien-olichon-QRtym77B6xk-unsplash.jpg">
+    </div>
 </body>
+
 </html>
