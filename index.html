@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./src/output.css" rel="stylesheet">
+    <link href="./src/output.css?v=2" rel="stylesheet">
 
     <title>Show Gallery</title>
 </head>
@@ -20,29 +20,29 @@
 
     <div id="gallery_container" class="my-hidden flex flex-col gap-4 rounded-2xl relative w-full h-">
         <div class="overlay"></div>
-        <img id="pic1" class="my-hidden img cursor-pointer" alt="Amsterdam"
+        <img id="pic1" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Amsterdam"
             src="./src/img/adrien-olichon-QRtym77B6xk-unsplash.jpg">
-        <img id="pic2" class="my-hidden img cursor-pointer" alt="Dresden"
+        <img id="pic2" class="my-hidden img cursor-pointer opacity-100 hover:opacity-60 transition-opacity duration-500" alt="Dresden"
             src="./src/img/chris-czermak-7ybKmhDTcz0-unsplash.jpg">
-        <img id="pic3" class="my-hidden img cursor-pointer" alt="Leipzig"
+        <img id="pic3" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Leipzig"
             src="./src/img/beth-k-5gdmPpJSReI-unsplash.jpg">
-        <img id="pic4" class="my-hidden img cursor-pointer" alt="Rom"
+        <img id="pic4" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Rom"
             src="./src/img/chris-czermak-gZKzBhsO6KY-unsplash.jpg">
-        <img id="pic5" class="my-hidden img cursor-pointer" alt="London"
+        <img id="pic5" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="London"
             src="./src/img/chris-karidis-nnzkZNYWHaU-unsplash.jpg">
-        <img id="pic6" class="my-hidden img cursor-pointer" alt="Bologna"
+        <img id="pic6" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Bologna"
             src="./src/img/petr-slovacek-SXk8BWKvoXE-unsplash.jpg">
-        <img id="pic7" class="my-hidden img cursor-pointer" alt="San Fransisco"
+        <img id="pic7" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="San Fransisco"
             src="./src/img/patrick-tomasso-tN7fJdTaU40-unsplash.jpg">
-        <img id="pic8" class="my-hidden img cursor-pointer" alt="Copenhagen"
+        <img id="pic8" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Copenhagen"
             src="./src/img/nick-karvounis-3_ZGrsirryY-unsplash.jpg">
-        <img id="pic9" class="my-hidden img cursor-pointer" alt="Seatle"
+        <img id="pic9" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Seatle"
             src="./src/img/gantavya-bhatt-aDXP7krtnb8-unsplash.jpg">
-        <img id="pic10" class="my-hidden img cursor-pointer" alt="Berlin"
+        <img id="pic10" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Berlin"
             src="./src/img/florian-wehde-1uWanmgkd5g-unsplash.jpg">
-        <img id="pic11" class="my-hidden img cursor-pointer" alt="Boston"
+        <img id="pic11" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Boston"
             src="./src/img/osman-rana-xJueGJJHnWs-unsplash.jpg">
-        <img id="pic12" class="my-hidden img cursor-pointer" alt="Los Angeles"
+        <img id="pic12" class="my-hidden img cursor-pointer hover:opacity-60 transition-opacity duration-500" alt="Los Angeles"
             src="./src/img/roberto-nickson-wdCkqK1oRIc-unsplash.jpg">
 
     </div>
@@ -55,6 +55,7 @@
         // einen index außerhalb der Funktion erstellen, der sich die Position im Array merkt  
         let current = 0;
 
+
         function switchPic() {
             // versteckt aktuelles Bild
             images[current].classList.add('my-hidden');
@@ -62,9 +63,24 @@
             current = (current + 1) % images.length;
             // zeigt nächstes Bild
             images[current].classList.remove('my-hidden');
-            // Ort anzeigen
-            images[current]
+
         }
+
+        function locationPositioned() {
+            // p erzeugen
+            const locationText = document.createElement('p');
+            locationText.classList.add('location');
+            locationText.textContent = images[current].alt;
+            images[current].appendChild(locationText);
+
+        }
+        // function overlay() {
+        //     overlay.style.display = "flex";
+        // }
+
+        // function clickOverlay() {
+        //     images[current].addEventListener('click', switchPic);
+        // }
 
         function showGallery() {
             galleryContainer.classList.remove('my-hidden');
@@ -79,8 +95,6 @@
                 img.removeEventListener('click', switchPic);
                 img.addEventListener('click', switchPic);
             })
-
-
         }
 
         button.addEventListener('click', showGallery);
