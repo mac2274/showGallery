@@ -9,30 +9,73 @@
     <title>Show Gallery</title>
 </head>
 
-<body class="flex flex-col gap-4 py-8 bg-orange-300 h-100 w-full">
+<body class="flex flex-col gap-4 py-8 bg-orange-300 justify-center h-screen w-full">
     <div class="flex flex-col gap-4 p-4 justify-center items-center ">
         <h1 title="Click on me to open galley"
-            class="flex text-center w-fit font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl
+            class="flex text-center font-bold text-4xl sm:text-5xl md:text-6xl lg:text-7xl
         border-2 border-black hover:bg-black hover:text-orange-300 cursor-pointer transition-all duration-500 rounded-2xl w-fit p-4">
             Picture Gallery</h1>
         <p>Hier gibt es schöne Städte zu sehen!</p>
     </div>
-    
-    <div id="gallery_container" class="flex flex-col gap-4 rounded-2xl">
-        <img id="pic1" class="my-hidden" alt="Picture of Amsterdam" src="./src/img/adrien-olichon-QRtym77B6xk-unsplash.jpg">
-        <img id="pic2" class="my-hidden" alt="Picture of Dresden" src="./src/img/chris-czermak-7ybKmhDTcz0-unsplash.jpg">
-        <img id="pic3" class="my-hidden" alt="Picture of Leipzig" src="./src/img/beth-k-5gdmPpJSReI-unsplash.jpg">
-        <img id="pic4" class="my-hidden" alt="Picture of Rom" src="./src/img/chris-czermak-gZKzBhsO6KY-unsplash.jpg">
-        <img id="pic5" class="my-hidden" alt="Picture of London" src="./src/img/chris-karidis-nnzkZNYWHaU-unsplash.jpg">
-        <img id="pic6" class="my-hidden" alt="Picture of Bologna" src="./src/img/petr-slovacek-SXk8BWKvoXE-unsplash.jpg">
-        <img id="pic7" class="my-hidden" alt="Picture of San Fransisco" src="./src/img/patrick-tomasso-tN7fJdTaU40-unsplash.jpg">
-        <img id="pic8" class="my-hidden" alt="Picture of Copenhagen" src="./src/img/nick-karvounis-3_ZGrsirryY-unsplash.jpg">
-        <img id="pic9" class="my-hidden" alt="Picture of Seatle" src="./src/img/gantavya-bhatt-aDXP7krtnb8-unsplash.jpg">
-        <img id="pic10" class="my-hidden" alt="Picture of Berlin" src="./src/img/florian-wehde-1uWanmgkd5g-unsplash.jpg">
-        <img id="pic11" class="my-hidden" alt="Picture of Boston" src="./src/img/osman-rana-xJueGJJHnWs-unsplash.jpg">
-        <img id="pic12" class="my-hidden" alt="Picture of Los Angeles" src="./src/img/roberto-nickson-wdCkqK1oRIc-unsplash.jpg">
+
+    <div id="gallery_container" class="my-hidden flex flex-col gap-4 rounded-2xl">
+        <img id="pic1" class="my-hidden img cursor-pointer" alt="Amsterdam"
+            src="./src/img/adrien-olichon-QRtym77B6xk-unsplash.jpg">
+        <img id="pic2" class="my-hidden img cursor-pointer" alt="Dresden"
+            src="./src/img/chris-czermak-7ybKmhDTcz0-unsplash.jpg">
+        <img id="pic3" class="my-hidden img cursor-pointer" alt="Leipzig" src="./src/img/beth-k-5gdmPpJSReI-unsplash.jpg">
+        <img id="pic4" class="my-hidden img cursor-pointer" alt="Rom"
+            src="./src/img/chris-czermak-gZKzBhsO6KY-unsplash.jpg">
+        <img id="pic5" class="my-hidden img cursor-pointer" alt="London"
+            src="./src/img/chris-karidis-nnzkZNYWHaU-unsplash.jpg">
+        <img id="pic6" class="my-hidden img cursor-pointer" alt="Bologna"
+            src="./src/img/petr-slovacek-SXk8BWKvoXE-unsplash.jpg">
+        <img id="pic7" class="my-hidden img cursor-pointer" alt="San Fransisco"
+            src="./src/img/patrick-tomasso-tN7fJdTaU40-unsplash.jpg">
+        <img id="pic8" class="my-hidden img cursor-pointer" alt="Copenhagen"
+            src="./src/img/nick-karvounis-3_ZGrsirryY-unsplash.jpg">
+        <img id="pic9" class="my-hidden img cursor-pointer" alt="Seatle"
+            src="./src/img/gantavya-bhatt-aDXP7krtnb8-unsplash.jpg">
+        <img id="pic10" class="my-hidden img cursor-pointer" alt="Berlin"
+            src="./src/img/florian-wehde-1uWanmgkd5g-unsplash.jpg">
+        <img id="pic11" class="my-hidden img cursor-pointer" alt="Boston"
+            src="./src/img/osman-rana-xJueGJJHnWs-unsplash.jpg">
+        <img id="pic12" class="my-hidden img cursor-pointer" alt="Los Angeles"
+            src="./src/img/roberto-nickson-wdCkqK1oRIc-unsplash.jpg">
 
     </div>
-</body>
 
+    <script>
+        const galleryContainer = document.querySelector('#gallery_container');
+        const images = document.querySelectorAll('img'); // Array erstellen
+        // einen index außerhalb der Funktion erstellen, der sich die Position im Array merkt  
+        let current = 0;
+
+        function switchPic(){
+            images[current].classList.add('my-hidden');
+            current = (current +1) % images.length;
+            images[current].classList.remove('my-hidden');
+        }
+
+        function showGallery(){
+            galleryContainer.classList.remove('my-hidden');
+            // alle img verstecken
+            images.forEach(img => img.classList.add('my-hidden'));
+            // Bild wird nie ins minus gehen, es wiederholt sich durch %
+            current = (current + 1) % images.length;
+            // aktuelles img anzeigen
+            images[current].classList.remove('my-hidden');
+            // 
+            images.forEach(img => {
+                img.removeEventListener('click', switchPic);
+                img.addEventListener('click', switchPic);
+            }) 
+
+
+        }
+
+        document.querySelector('h1').addEventListener('click', showGallery);
+        
+    </script>
+</body>
 </html>
